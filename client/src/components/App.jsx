@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import axios from 'axios';
 import styles from './styles.css';
@@ -13,7 +14,12 @@ class App extends Component {
     strength: [],
     intelligence: [],
     speed: [],
-    squed: []
+    squed: [],
+    newHeroName: '',
+    newHeroStrength: '',
+    newHeroIntelligence: '',
+    newHeroSpeed: ''
+    
   }
 
   componentDidMount() {
@@ -51,9 +57,96 @@ save = () => {
 }))
 }
 
+onNewHeroName = (e) => {
+const newHeroName = e.target.value;
+this.setState({newHeroName: newHeroName});
+}
+
+onNewHeroStrength = (e) => {
+  const newHeroStrength = e.target.value;
+  this.setState({newHeroStrength: newHeroStrength});
+  }
+
+onNewHeroIntelligence = (e) => {
+    const newHeroIntelligence = e.target.value;
+    this.setState({newHeroIntelligence: newHeroIntelligence});
+    }
+
+onNewHeroSpeed = (e) => {
+      const newHeroSpeed = e.target.value;
+      this.setState({newHeroSpeed: newHeroSpeed});
+      }
+
+handleSubmit = (e) => {
+e.preventDefault();
+
+  const name = this.state.newHeroName
+  const strength = this.state.newHeroStrength
+  const intelligence = this.state.newHeroIntelligence
+  const speed = this.state.newHeroSpeed
+
+
+
+axios.post(`/api/heroes/`,  {name, strength, intelligence, speed} )
+  .then(res => {
+    console.log(res);
+    console.log(res.data);
+  })
+console.log(this.state.newHeroName);
+console.log(this.state.newHeroStrength);
+console.log(this.state.newHeroIntelligence);
+console.log(this.state.newHeroSpeed);
+}
+
+
   render() {
     return (
    <div className={styles.body}>
+   <div>
+   <form onSubmit={this.handleSubmit}>
+                <p>
+                    <label>Name</label><br />
+                    <input type="text"  onChange={this.onNewHeroName}/>
+                </p>
+                <p> Strength <select onChange={this.onNewHeroStrength}>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+  <option>6</option>
+  <option>7</option>
+  <option>8</option>
+  <option>9</option>
+  <option>10</option>
+</select> </p>
+<p> Intelligence <select onChange={this.onNewHeroIntelligence}>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+  <option>6</option>
+  <option>7</option>
+  <option>8</option>
+  <option>9</option>
+  <option>10</option>
+</select> </p>
+<p>Speed <select onChange={this.onNewHeroSpeed}>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+  <option>6</option>
+  <option>7</option>
+  <option>8</option>
+  <option>9</option>
+  <option>10</option>
+</select></p>
+                <input type="submit" value="Отправить" />
+            </form>
+   </div>
    <SectionList 
    heroes={this.state.heroes} 
    id = {this.state.id} 

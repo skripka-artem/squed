@@ -27,6 +27,13 @@
       "strength": 5,
       "intelligence": 6,
       "speed": 10
+    },
+    {
+      "name": "Spider",
+      "strength": "4",
+      "intelligence": "6",
+      "speed": "8",
+      "id": 4
     }
   ],
   "squads": [
