@@ -1,19 +1,23 @@
-/* eslint-disable */
+
 import React  from 'react';
+import PropTypes from 'prop-types'
 import styles from './styles.css';
 
-const SectionItems = ({squed}) => (
+const SectionSqued = ({squed}) => {
+  
+    console.log(squed)
+    return(
               <div>
-                  <p className={styles.text}>squed</p>
+                  <p className={styles.text}>SqueD</p>
               <div className={styles.section}>
-            {squed.map(squed => (
-                <div key={squed.id} className={styles.block}>
+            {squed.map(squeds => (
+                <div key={squeds.id} className={styles.block}>
                
-               <p>{squed.name}</p>
+               <p>{squeds.id.name}</p>
                <ul>
-               <li>strength: {squed.strength}</li>
-               <li>intelligence: {squed.intelligence}</li>
-               <li>speed: {squed.speed}</li>
+               <li>strength: {squeds.strength}</li>
+               <li>intelligence: {squeds.intelligence}</li>
+               <li>speed: {squeds.speed}</li>
                </ul>
                 </div>
                 
@@ -22,8 +26,11 @@ const SectionItems = ({squed}) => (
         
               </div>
               </div>
-          )
+          )}
         
-    
+          SectionSqued.propTypes = {
+            squed: PropTypes.string.isRequired
+            
+          };
 
-    export default  SectionItems
+    export default  SectionSqued
